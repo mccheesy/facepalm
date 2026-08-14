@@ -1,14 +1,42 @@
 // ZMK Core Includes
 #include <behaviors.dtsi>
 #include <behaviors/num_word.dtsi> // requires https://github.com/urob/zmk-auto-layer module
-#include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
 
-// Layers
+// Which physical layout occupies each available slot
+// If you want to change the default base layer,
+// or any of the others, do so here:
+#define L1_FILE   "colemak-dh.dtsi"
+#define L1_NAME   "base"
+#define ALT_FILE  "qwerty.dtsi"
+#define ALT_NAME  "alt"
+#define GAME_FILE "qwerty_no_hrm.dtsi"
+#define GAME_NAME "game"
+
+// Whether optional slots are compiled in at all
+#define ENABLE_ALT_LAYER 1
+#define ENABLE_GAME_LAYER 1
+
 #define L1 0
-#define L2 1
-#define Fn 2
+
+#if ENABLE_ALT_LAYER
+  #define ALT (L1 + 1)
+  #define _ALT_SLOT 1
+#else
+  #define _ALT_SLOT 0
+#endif
+
+#if ENABLE_GAME_LAYER
+  #define GAME (L1 + _ALT_SLOT + 1)
+  #define _GAME_SLOT 1
+#else
+  #define _GAME_SLOT 0
+#endif
+
+#define L2 (L1 + _ALT_SLOT + _GAME_SLOT + 1)
+#define Fn (L2 + 1)
 
 // Meh key
 #define MEH LS(LC(LALT))
@@ -23,19 +51,30 @@
 #define COMBO_QUICK_TAP_MS 100
 
 // Key positions per hand
-#define KEYS_L 0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29
-#define KEYS_R 6 7 8 9 10 11 18 19 20 21 22 23 30 31 32 33 34 35
-#define THUMBS 36 37 38 39 40 41
+#define KEYS_L 0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 25
+#define KEYS_R 5 6 7 8 9 15 16 17 18 19 26 27 28 29 30 31
+#define THUMBS 32 33 34 35 36 37
 
 #include "behaviors.dtsi"
 #include "macros.dtsi"
 #include "combos.dtsi"
 
-// Alpha layer: uncomment desired, comment the others
-#include "L1_colemak-dh.dtsi"
-// #include "L1_colemak.dtsi"
-// #include "L1_dvorak.dtsi"
-// #include "L1_qwerty.dtsi"
+// Alpha layers: uncomment desired, comment the others
+//  - Order these as desired; first is default
+//  - Be sure to set the appropriate values on lines 9-10
+#define DISPLAY_NAME L1_NAME
+#include L1_FILE
+#undef DISPLAY_NAME
+#if ENABLE_ALT_LAYER
+  #define DISPLAY_NAME ALT_NAME
+  #include ALT_FILE
+  #undef DISPLAY_NAME
+#endif
+#if ENABLE_GAME_LAYER
+  #define DISPLAY_NAME GAME_NAME
+  #include GAME_FILE
+  #undef DISPLAY_NAME
+#endif
 
 // Other layers
 #include "L2.dtsi"

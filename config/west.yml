@@ -3,8 +3,8 @@ manifest:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
 
-    - name: bildermankawasaki
-      url-base: https://github.com/bildermankawasaki
+    - name: azumafuji
+      url-base: https://github.com/azumafuji
 
     - name: caksoylar
       url-base: https://github.com/dhruvinsh
@@ -24,10 +24,6 @@ manifest:
       revision: main
       import: app/west.yml
 
-    - name: zmk-keyboard-totem
-      remote: bildermankawasaki
-      revision: main
-
     - name: zmk-auto-layer
       remote: urob
       revision: main
@@ -42,6 +38,10 @@ manifest:
 
     - name: nice-view-gem
       remote: m165437
+      revision: main
+
+    - name: totem-yads
+      remote: azumafuji
       revision: main
 
   self:

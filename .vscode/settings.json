@@ -1,5 +1,10 @@
 {
   "cSpell.words": [
     "affordances"
-  ]
+  ],
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true
 }

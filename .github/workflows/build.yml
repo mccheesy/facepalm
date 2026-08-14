@@ -8,7 +8,7 @@ on:
       - "config/*.dtsi"
       - "config/*.conf"
       - "config/west.yml"
-      - "knucklehead/*.dtsi"
+      - "facepalm/*.dtsi"
 
 jobs:
   build:

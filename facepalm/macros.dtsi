@@ -74,5 +74,123 @@
         <&macro_param_1to1>,
         <&macro_release &mo MACRO_PLACEHOLDER>;
     };
+
+    /*
+      Allows automatic shift of the underlying keypress on a hold
+
+      Params:
+        1. Key to shift
+
+      Example:
+        `&as SQT` > tap: SQT, hold: DQT
+
+     */
+    /omit-if-no-ref/ as: autoshift {
+      display-name = "Autoshift";
+      compatible = "zmk,behavior-macro-one-param";
+      #binding-cells = <1>;
+      bindings =
+        <&macro_press>,
+        <&macro_param_1to1 &macro_param_1to2 &ht_as MACRO_PLACEHOLDER MACRO_PLACEHOLDER>,
+        <&macro_pause_for_release>,
+        <&macro_release>,
+        <&macro_param_1to1 &macro_param_1to2 &ht_as MACRO_PLACEHOLDER MACRO_PLACEHOLDER>;
+    };
+
+    /omit-if-no-ref/ sh: shifted_keypress {
+      display-name = "Shifted Keypress";
+      compatible = "zmk,behavior-macro-one-param";
+      #binding-cells = <1>;
+      bindings =
+        <&macro_press>,
+        <&kp LSHFT &macro_param_1to1 &kp MACRO_PLACEHOLDER>,
+        <&macro_pause_for_release>,
+        <&macro_release>,
+        <&macro_param_1to1 &kp MACRO_PLACEHOLDER &kp LSHFT>;
+    };
+
+    /omit-if-no-ref/ as_cq: autoshift_cmma_qmark {
+      display-name = "Comma-Question Mark (Autoshift)";
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings =
+        <&macro_press>,
+        <&ht_cq QMARK 0>,
+        <&macro_pause_for_release>,
+        <&macro_release>,
+        <&ht_cq QMARK 0>;
+    };
+
+    /omit-if-no-ref/ as_cs: autoshift_colon_semi {
+      compatible = "zmk,behavior-macro";
+      display-name = "Colon-Semicolon (Autoshift)";
+      #binding-cells = <0>;
+      bindings =
+        <&macro_press>,
+        <&ht_cs SEMI 0>,
+        <&macro_pause_for_release>,
+        <&macro_release>,
+        <&ht_cs SEMI 0>;
+    };
+
+    /omit-if-no-ref/ as_de: autoshift_dot_excl {
+      display-name = "Period-Exclamation Mark (Autoshift)";
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings =
+        <&macro_press>,
+        <&ht_de EXCL 0>,
+        <&macro_pause_for_release>,
+        <&macro_release>,
+        <&ht_de EXCL 0>;
+    };
+
+    /omit-if-no-ref/ as_ft: autoshift_fslh_tild {
+      display-name = "Forward Slash-Tilde (Autoshift)";
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings =
+        <&macro_press>,
+        <&ht_ft TILDE 0>,
+        <&macro_pause_for_release>,
+        <&macro_release>,
+        <&ht_ft TILDE 0>;
+    };
+
+    /omit-if-no-ref/ as_1p: autoshift_n1_pipe {
+      display-name = "N1-Pipe (Autoshift)";
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings =
+        <&macro_press>,
+        <&ht_1p PIPE 0>,
+        <&macro_pause_for_release>,
+        <&macro_release>,
+        <&ht_1p PIPE 0>;
+    };
+
+    /omit-if-no-ref/ as_9g: autoshift_n9_grave {
+      display-name = "N9-Grave (Autoshift)";
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings =
+        <&macro_press>,
+        <&ht_9g GRAVE 0>,
+        <&macro_pause_for_release>,
+        <&macro_release>,
+        <&ht_9g GRAVE 0>;
+    };
+
+    /omit-if-no-ref/ as_0b: autoshift_n0_bslh {
+      display-name = "N0-Back Slash (Autoshift)";
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings =
+        <&macro_press>,
+        <&ht_0b BSLH 0>,
+        <&macro_pause_for_release>,
+        <&macro_release>,
+        <&ht_0b BSLH 0>;
+    };
   };
 };

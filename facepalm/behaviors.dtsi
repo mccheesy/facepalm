@@ -59,6 +59,38 @@
     };
 
     /*
+    Home Row Layers
+
+    - tap: &kp <PARAM_2>
+    - hold: &mo <PARAM_1>
+
+    Example: &hrll LCMD T
+    */
+    /omit-if-no-ref/ hrll: hrl_left {
+      bindings = <&kp>, <&mo>;
+      compatible = "zmk,behavior-hold-tap";
+      flavor = "balanced";
+      hold-trigger-key-positions = <KEYS_R THUMBS>;
+      hold-trigger-on-release;
+      tapping-term-ms = <TAPPING_TERM_MS>;
+      quick-tap-ms = <QUICK_TAP_MS>;
+      require-prior-idle-ms = <REQUIRE_PRIOR_IDLE_MS>;
+      #binding-cells = <2>;
+    };
+
+    /omit-if-no-ref/ hrlr: hrl_right {
+      bindings = <&kp>, <&mo>;
+      compatible = "zmk,behavior-hold-tap";
+      flavor = "balanced";
+      hold-trigger-key-positions = <KEYS_L THUMBS>;
+      hold-trigger-on-release;
+      tapping-term-ms = <TAPPING_TERM_MS>;
+      quick-tap-ms = <QUICK_TAP_MS>;
+      require-prior-idle-ms = <REQUIRE_PRIOR_IDLE_MS>;
+      #binding-cells = <2>;
+    };
+
+    /*
     - tap: sticky shift
     - double-tap: caps-word (shift + tap mod-morph)
     - hold: shift
@@ -120,11 +152,163 @@
     - hold: enter bootloader mode
     */
     /omit-if-no-ref/ rst_boot: rst_boot {
-        compatible = "zmk,behavior-hold-tap";
-        #binding-cells = <2>;
-        tapping-term-ms = <500>;
-        flavor = "tap-preferred";
-        bindings = <&bootloader>, <&sys_reset>;
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      tapping-term-ms = <500>;
+      flavor = "tap-preferred";
+      bindings = <&bootloader>, <&sys_reset>;
+    };
+
+    /* Better shift pairs */
+    /omit-if-no-ref/ mm_cq: mod_morph_cmma_qmark {
+      display-name = "Comma-Question Mark";
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp COMMA>, <&kp QMARK>;
+
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+
+    /omit-if-no-ref/ mm_cs: mod_morph_colon_semi {
+      display-name = "Comma-Question Mark";
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp COLON>, <&kp SEMI>;
+
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+
+    /omit-if-no-ref/ mm_de: mod_morph_dot_excl {
+      display-name = "Period-Exclamation Mark";
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp DOT>, <&kp EXCL>;
+
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+
+    /omit-if-no-ref/ mm_ft: mod_morph_fslh_tild {
+      display-name = "Forward Slash-Tilde";
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp FSLH>, <&kp TILDE>;
+
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+
+    /omit-if-no-ref/ mm_1p: mod_morph_n1_pipe {
+      display-name = "N1-Pipe";
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp N1>, <&kp PIPE>;
+
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+
+    /omit-if-no-ref/ mm_9g: mod_morph_n9_grave {
+      display-name = "N9-Grave";
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp N9>, <&kp GRAVE>;
+
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+
+    /omit-if-no-ref/ mm_0b: mod_morph_n0_bslh {
+      display-name = "N0-Back Slash";
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp N0>, <&kp BSLH>;
+
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+
+    /omit-if-no-ref/ ht_as: hold_tap_autoshift {
+      compatible = "zmk,behavior-hold-tap";
+      bindings = <&sh>, <&kp>;
+
+      #binding-cells = <2>;
+      tapping-term-ms = <150>;
+      quick-tap-ms = <200>;
+      require-prior-idle-ms = <125>;
+      flavor = "tap-preferred";
+    };
+
+    /omit-if-no-ref/ ht_cq: hold_tap_cmma_qmark {
+      display-name = "Comma-Question Mark (Hold-Tap)";
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      bindings = <&kp>, <&mm_cq>;
+
+      tapping-term-ms = <150>;
+      quick-tap-ms = <0>;
+      flavor = "tap-preferred";
+    };
+
+    /omit-if-no-ref/ ht_cs: hold_tap_colon_semi {
+      compatible = "zmk,behavior-hold-tap";
+      display-name = "Comma-Question Mark (Hold-Tap)";
+      #binding-cells = <2>;
+      bindings = <&kp>, <&mm_cs>;
+
+      tapping-term-ms = <150>;
+      quick-tap-ms = <0>;
+      flavor = "tap-preferred";
+    };
+
+    /omit-if-no-ref/ ht_de: hold_tap_dot_excl {
+      display-name = "Period-Exclamation Mark (Hold-Tap)";
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      bindings = <&kp>, <&mm_de>;
+
+      tapping-term-ms = <150>;
+      quick-tap-ms = <0>;
+      flavor = "tap-preferred";
+    };
+
+    /omit-if-no-ref/ ht_ft: hold_tap_fslh_tild {
+      display-name = "Forward Slash-Tilde (Hold-Tap)";
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      bindings = <&kp>, <&mm_ft>;
+
+      tapping-term-ms = <150>;
+      quick-tap-ms = <0>;
+      flavor = "tap-preferred";
+    };
+
+    /omit-if-no-ref/ ht_1p: hold_tap_n1_pipe {
+      display-name = "N1-Pipe (Hold-Tap)";
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      bindings = <&kp>, <&mm_1p>;
+
+      tapping-term-ms = <150>;
+      quick-tap-ms = <0>;
+      flavor = "tap-preferred";
+    };
+
+    /omit-if-no-ref/ ht_9g: hold_tap_n9_grave {
+      display-name = "N9-Grave (Hold-Tap)";
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      bindings = <&kp>, <&mm_9g>;
+
+      tapping-term-ms = <150>;
+      quick-tap-ms = <0>;
+      flavor = "tap-preferred";
+    };
+
+    /omit-if-no-ref/ ht_0b: hold_tap_n0_bslh {
+      display-name = "N0-Back Slash (Hold-Tap)";
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      bindings = <&kp>, <&mm_0b>;
+
+      tapping-term-ms = <150>;
+      quick-tap-ms = <0>;
+      flavor = "tap-preferred";
     };
   };
 };
