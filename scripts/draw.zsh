@@ -3,7 +3,7 @@
 set -euo pipefail
 
 function {
-  local __keymap="${1:-corneish_zen}"
+  local __keymap="${1:-totem}"
 
   local __repo_dir="$(dirname $(dirname $(realpath $ZSH_ARGZERO)))"
   local __keymap_input_file="$__repo_dir/config/${__keymap}.keymap"

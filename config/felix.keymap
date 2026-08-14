@@ -1,0 +1,13 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include "../facepalm/base.dtsi"
+
+/ {
+	chosen {
+		zmk,matrix_transform = &default_transform;
+	};
+};
